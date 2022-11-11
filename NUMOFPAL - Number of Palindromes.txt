@@ -1,0 +1,61 @@
+
+https://www.spoj.com/problems/NUMOFPAL/
+
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Security.AccessControl;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp26
+{
+    class Program
+    {
+
+        public static int CountPalindromes(string s)
+        {
+            if (s == null || s.Length < 1)
+            {  
+                return 0;
+            }
+
+            int cont = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                cont += ExpandAroundCenter(s, i, i);
+                cont += ExpandAroundCenter(s, i, i + 1);
+            }
+
+            return cont; 
+        }
+
+        private static int ExpandAroundCenter(string s, int left, int right)
+        {
+            int cont = 0;
+            int L = left, R = right;
+            while (L >= 0 && R < s.Length && s[L] == s[R])
+            {
+                cont++;
+                L--;
+                R++;
+            }
+            return cont;
+        }
+
+
+        static void Main(string[] args)
+        {
+
+
+
+            //string s = "malayalam";
+
+            Console.WriteLine(CountPalindromes(Console.ReadLine().Trim()));
+
+            Console.ReadLine();
+        }
+    }
+}
